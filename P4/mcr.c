@@ -1,4 +1,62 @@
 #include <stdio.h>
+#include <stdlib.h>
+void menu(char tab[8][8])
+{
+    int i,j,x,y;
+    char opc;
+    while(1)
+    {
+        printf("Escoga la opcion\n");
+        printf("1)Reyna\n");
+        printf("2)Rey\n");
+        printf("3)Salir:\n");
+        scanf("%d",&opc);
+        switch(opc)
+        {
+        case 1:
+            {
+                printf("Posicion de la Reyna\n");
+                printf("Ingrese valor x:"); 
+                scanf("%i",&x);
+                printf("Ingrese valor y:");
+                scanf("%i",&y);
+                llenarTab(tab);
+                reina(tab,x-1,y-1);
+                mostrarTab(tab);
+                break;
+            }
+        case 2:
+            {
+                printf("Posicion del rey\n");
+                printf("Ingrese la posicion para x\n");
+                scanf("%i",&x);
+                printf("Ingrese la posicion para y\n");
+                scanf("%i",&y);
+                llenarTab(tab);
+                rey(tab,x-1,y-1);
+                mostrarTab(tab);
+                break;
+            }
+        case 3:
+            {
+                return 0;
+            }
+        default:
+            {
+                printf("Opcion invalida");
+            }
+        }
+    }
+    return 0;
+
+}
+
+int main()
+{
+    char tab[8][8];
+    menu(tab);
+    return 0;
+}
 void llenarTab(char tab[8][8])
 {
     int i,j;
@@ -6,8 +64,7 @@ void llenarTab(char tab[8][8])
     {
         for(j=0;j<8;j++)
         {
-            if((i+j)%2 == 0)
-            {
+            if((i+j)%2 == 0){
                 tab[i][j]=219;
             }
             else
@@ -131,58 +188,35 @@ void reina(char tab[8][8],int x,int y)
     tab[i][j]='Q';
 }
 
-void menu(char tab[8][8])
-{
-    int i,j,x,y;
-    char opc;
-    while(1)
-    {
-        printf("Escoga la opcion");
-        printf("Reyna(1), Rey(2) o Salir(3):");
-        scanf("%d",&opc);
-        switch(opc)
-        {
-        case '1':
-            {
-                printf("Posicion de la Reyna\n");
-                printf("Ingrese valor x:"); 
-                scanf("%i",x);
-                printf("Ingrese valor y:");
-                scanf("%i",y);
-                llenarTab(tab);
-                reina(tab,x-1,y-1);
-                mostrarTab(tab);
-                break;
-            }
-        case '2':
-            {
-                printf("Posicion del rey\n");
-                printf("Ingrese la posicion para x\n");
-                scanf("%i",x);
-                printf("Ingrese la posicion para y\n");
-                scanf("%i",y);
-                llenarTab(tab);
-                rey(tab,x-1,y-1);
-                mostrarTab(tab);
-                break;
-            }
-        case '3':
-            {
-                break;
-            }
-        default:
-            {
-                system("CLS");
-                printf("Opcion invalida");
-            }
-        }
-    }
+int main(ptr)
+ {
 
-}
+ 	int* ptr;
+ 	int n, i;
 
-int main()
-{
-    char tab[8][8];
-    menu(tab);
-    return 0;
-}
+ 	printf("Ingresa el numero de elementos:");
+ 	scanf("%d",&n);
+ 	printf("Numero de elementos ingresados: %d\n", n);
+
+ 	ptr = (int*)malloc(n * sizeof(int));
+
+ 	if (ptr == NULL) {
+ 		printf("Memoria no asignada.\n");
+ 		exit(0);
+ 	}
+ 	else {
+
+ 		printf("Memoria asignada con exito usando malloc.\n");
+
+ 		for (i = 0; i < n; ++i) {
+ 			ptr[i] = i + 1;
+ 		}
+
+ 		printf("El numero de elementos del arreglo son: ");
+ 		for (i = 0; i < n; ++i) {
+ 			printf("%d, ", ptr[i]);
+ 		}
+ 	}
+
+ 	return 0;
+ }

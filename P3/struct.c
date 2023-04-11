@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+
 void menu(char tab[8][8]){
     int i,j,x,y;
     char opc;
@@ -293,3 +295,4 @@ void rey(char tab[8][8],int x,int y)
     j=x;
     tab[i][j]='R';
 }
+
